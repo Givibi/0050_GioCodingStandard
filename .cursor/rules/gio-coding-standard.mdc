@@ -1,0 +1,68 @@
+---
+description: GioCodingStandard – Giovannis persönliche Erweiterung des LEXI Coding Standards
+alwaysApply: true
+---
+
+# GioCodingStandard
+
+Dieser Standard **erweitert** den LEXI Coding Standard (`0005_LEXICodingStandard`).
+LEXI-Regeln gelten weiterhin vollständig – hier stehen nur Giovannis persönliche Ergänzungen.
+
+## Promotion-Flow
+
+Neue Muster entstehen hier. Wenn sie sich in mindestens einem Projekt bewährt haben,
+werden sie in `0005_LEXICodingStandard` übernommen (Promotion).
+Das CHANGELOG.md dokumentiert alle Promotions.
+
+---
+
+## Cursor Workspace-Setup
+
+### Grundregel: Eine .code-workspace-Datei pro Projekt
+
+Jedes Projekt bekommt eine `.code-workspace`-Datei im Repo-Root.
+Sie ist der **stabile Anker** für die Chat-Geschichte des Projekts.
+
+```json
+{
+    "folders": [
+        { "path": "." },
+        { "path": "../GioCodingStandard" }
+    ],
+    "settings": {}
+}
+```
+
+> Das Einbinden von `GioCodingStandard` als Workspace-Folder aktiviert diese Regel automatisch.
+
+### Warum das wichtig ist
+
+Cursor speichert Chat-Sessions anhand der Workspace-ID (Hash des Workspace-Pfads).
+- Öffnen via **Dock-Icon** → temporäre ID → leere Chat-Liste
+- Öffnen via **.code-workspace-Datei** → immer dieselbe ID → alle Chats sichtbar
+
+### Immer so öffnen
+
+```
+Finder → Projektordner → Doppelklick auf PROJEKTNAME.code-workspace
+```
+
+### Recovery: FIX_CHATS.command
+
+Wenn Chats verschwunden sind:
+1. `FIX_CHATS.command` im Repo-Root doppelklicken
+2. Cursor schließen wenn aufgefordert (Cmd+Q)
+3. Script migriert Chats und öffnet den richtigen Workspace
+
+Template: `GioCodingStandard/templates/new-project/FIX_CHATS.command`
+
+---
+
+## Chat ist Protokoll – Rules sind Wissen
+
+Chat-Inhalte sind vergänglich. Wissen gehört in:
+- `.cursor/rules/PROJEKTNAME-context.mdc` – Entscheidungen, Stand, offene Punkte
+- `Docs/current/` – Specs nach LEXI Spec-First
+- `GioCodingStandard/templates/` – wiederverwendbare Muster für neue Projekte
+
+Neues Projekt starten = Rules aus altem Projekt referenzieren, nicht Chat-Geschichte lesen.
