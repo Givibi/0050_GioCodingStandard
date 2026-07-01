@@ -58,6 +58,75 @@ Template: `GioCodingStandard/templates/new-project/FIX_CHATS.command`
 
 ---
 
+## Git Branching & Modul-Abschluss
+
+### Grundregel: Ein Feature-Branch pro Modul
+
+```
+main                    ← nur vollständig abgeschlossene, abgenommene Module
+Feature_<ModulName>     ← ein Branch pro Modul, gesamte Entwicklung hier
+```
+
+Beispiele: `Feature_Quality-Check`, `Feature_KI-Chat`, `Feature_Wissensmanagement`
+
+### Workflow pro Modul
+
+```
+1. Branch anlegen:   git checkout -b Feature_<ModulName>
+2. Entwickeln:       alle Commits auf dem Feature-Branch
+3. Pushen:           git push origin Feature_<ModulName>
+4. Modul abgenommen: PR erstellen (siehe unten)
+5. Merge → main:     über GitHub.com Pull Request
+6. Aufräumen:        Branch Remote + lokal löschen
+```
+
+### Pull Request erstellen (GitHub.com empfohlen)
+
+GitHub.com ist besser als GitHub Desktop für PRs – saubere Dokumentation,
+alle Commits und Dateien auf einen Blick, Branch-Löschung mit einem Klick.
+
+**Schritte:**
+1. github.com/<org>/<repo> öffnen
+2. Banner „Compare & pull request" klicken
+3. Titel: Conventional Commits Format → `feat: <modul>-Modul vollständig implementiert (Phase 0-6)`
+4. Beschreibung: Zusammenfassung (Spec-Phasen, Implementierung, Testergebnis, nächster Schritt)
+5. „Create pull request" → „Merge pull request" → „Confirm merge"
+6. „Delete branch" klicken
+
+### Nach dem Merge: lokal aufräumen
+
+```bash
+git checkout main
+git pull origin main
+git branch -d Feature_<ModulName>
+```
+
+Danach in **GitHub Desktop**: „Fetch origin" klicken.  
+In **Cursor**: unten links zeigt `main` – falls nicht, Cursor neu starten.
+
+### PR-Beschreibung Vorlage
+
+```markdown
+## Zusammenfassung
+Kurze Beschreibung was das Modul macht.
+
+## Spec (Phase 0–5) – alle Phasen abgenommen
+- Phase 0: INDEX.md – ...
+- Phase 1: ANFORDERUNGEN.md – X User Stories, Y Akzeptanzkriterien
+- ...
+
+## Implementierung (Phase 6)
+- Modelle, Migration, Services, Routen, Forms, Templates, Tests
+
+## Testergebnis
+- pytest: X/X PASSED | ruff: 0 | mypy: 0
+
+## Nächster Schritt
+<nächstes Modul> → neuer Branch Feature_<NächstesModul>
+```
+
+---
+
 ## Chat ist Protokoll – Rules sind Wissen
 
 Chat-Inhalte sind vergänglich. Wissen gehört in:

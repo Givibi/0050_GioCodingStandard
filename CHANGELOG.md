@@ -5,6 +5,21 @@ Status: `neu` | `bewährt` | `promoted` (in LEXI übernommen) | `verworfen`
 
 ---
 
+## [0.2.0] – 2026-07-01
+
+### Neu
+- **git-branching-modul-abschluss** – Workflow für Feature-Branch pro Modul + PR-Prozess
+  - Ein Branch pro Modul (`Feature_<ModulName>`) → Merge in `main` nach Phase-6-Abnahme
+  - PR über GitHub.com (nicht GitHub Desktop) – saubere Dokumentation, Branch-Löschung mit einem Klick
+  - Conventional Commits Titel-Format für PRs
+  - PR-Beschreibung Vorlage (Spec-Phasen, Implementierung, Testergebnis, nächster Schritt)
+  - Lokales Aufräumen nach Merge: `git checkout main && git pull && git branch -d Feature_...`
+  - Cursor-Neustart wenn Branch-Anzeige nicht aktualisiert
+  - Erstmals erprobt: CV-KI-Plattform, Modul code_quality (2026-07-01)
+  - Status: `neu`
+
+---
+
 ## [0.1.0] – 2026-06-30
 
 ### Neu
