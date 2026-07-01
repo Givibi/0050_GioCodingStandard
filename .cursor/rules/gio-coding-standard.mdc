@@ -127,6 +127,46 @@ Kurze Beschreibung was das Modul macht.
 
 ---
 
+## Neuer Chat pro Modul
+
+### Grundregel
+
+Jedes neue Modul bekommt einen **eigenen Chat** in Cursor.  
+Nicht weil der alte Chat verloren geht – sondern weil ein fokussierter Chat besser arbeitet.
+
+**Warum:**
+- Kein Kontext-Rauschen aus abgeschlossenen Modulen
+- Weniger Token-Verbrauch pro Anfrage
+- Saubere Modul-Geschichte (ein Chat = ein Modul)
+
+### Ablauf
+
+```
+1. Altes Modul abgeschlossen + gemergt + Branch gelöscht
+2. Neuer Branch für nächstes Modul angelegt (git checkout -b Feature_<Modul>)
+3. Neuen Chat öffnen: Cursor → Chat-Panel → + Icon
+4. NICHT Cursor neu starten – einfach neuen Chat im selben Workspace
+5. Rules laden automatisch (alwaysApply: true) – kein manuelles Laden nötig
+```
+
+### Voraussetzung: Workspace muss korrekt geöffnet sein
+
+Rules laden nur wenn Cursor über die `.code-workspace`-Datei geöffnet wurde:
+```
+Finder → Projektordner → Doppelklick auf PROJEKTNAME.code-workspace
+```
+Wenn Cursor bereits offen ist und der richtige Workspace geladen ist → einfach neuen Chat öffnen, fertig.
+
+### Kein Summary-Chat nötig
+
+Der neue Chat braucht keine Zusammenfassung aus dem alten Chat – weil alles Relevante in den Rules steht:
+- `cv-ki-plattform-context.mdc` → Projektstand, alle Entscheidungen, nächster Schritt
+- `gio-coding-standard.mdc` → Prozesse, Workflows, Konventionen
+
+**Schnelltest im neuen Chat:** „Was ist der aktuelle Projektstand?" → nennt er die richtigen Module und den nächsten Schritt, sind die Rules korrekt geladen.
+
+---
+
 ## Chat ist Protokoll – Rules sind Wissen
 
 Chat-Inhalte sind vergänglich. Wissen gehört in:

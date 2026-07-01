@@ -5,6 +5,19 @@ Status: `neu` | `bewährt` | `promoted` (in LEXI übernommen) | `verworfen`
 
 ---
 
+## [0.3.0] – 2026-07-01
+
+### Neu
+- **neuer-chat-pro-modul** – Workflow für saubere Chat-Trennung zwischen Modulen
+  - Neuer Chat pro Modul (nicht pro Projekt)
+  - Rules laden automatisch – kein Summary-Chat nötig
+  - Schnelltest „Was ist der aktuelle Projektstand?" zur Verifikation
+  - Voraussetzung: Workspace über .code-workspace geöffnet
+  - Erstmals explizit dokumentiert nach Abschluss code_quality-Modul (2026-07-01)
+  - Status: `neu`
+
+---
+
 ## [0.2.0] – 2026-07-01
 
 ### Neu
